@@ -4,30 +4,27 @@ import './index.css';
 import App from './App';
 
 
-// connect react to redux
-
-// get createStore function from redux
+// BrowserRouter - React router
+// createStore - Redux store 
+// rootReducer - File created to handle redux state management logic
+// Provider - used to connect the react application to the redux store
+import { BrowserRouter } from 'react-router-dom';
 import { createStore } from 'redux'; // destructured version of: Redux.createStore 
-
-// get our reducer function from our rootReducer file
 import rootReducer from './rootReducer';
-
-// Provider connects the react application with the redux store
-// this is done by wrapping the application component in a provider component
 import { Provider } from 'react-redux';
 
-// create the store, second param is for chrome dev tools extension
+// create redux store using reducer file. Second param is for chrome dev tools
 const store = createStore(rootReducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-
 ReactDOM.render(
-    // pass into the provider component a store prop that uses our store const
-    // by wrapping the app, any child component has access to the redux store
-    // now all components will be able to dispatch actions, instead of only the 
-    // store being able to! (:
+    // the provider is the top level component
+    // pass in store as a prop which is == to the redux store created above
+    // child components can now dispatch actions to redux store
+    // browser router wrapps the application to use react router
     <Provider store={store}>
-         <App />
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
     </Provider>
-   
     , document.getElementById('root'));

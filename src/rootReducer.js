@@ -12,10 +12,6 @@ const initialState = {
 export default function rootReducer(state = initialState, action) {
     // switch statement based off of action type's value
     switch (action.type) {
-        // Add
-        // create copy of state
-        // increment copy ID values
-        // return new obj w/ all state contents & a new object who's values come in from the params
         case ADD_TODO:
             let newAddedState = { ...state };
             newAddedState.id++;
@@ -37,7 +33,7 @@ export default function rootReducer(state = initialState, action) {
                 }
                 return element
             })
-
+            // return the new state object
             return {
                 ...state,
                 todos: updatedTodos
